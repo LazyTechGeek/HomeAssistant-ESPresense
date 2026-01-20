@@ -1,0 +1,17 @@
+alias: Guest Mode – Disable when Tile keyring is detected away for 12 hours
+description: Disabled guest mode when the Tile keyring has not been home for 12 hours
+triggers:
+  - entity_id:
+      - sensor.tile_keyring # ⬅️ CHANGE THIS to your Tile / device entity
+    to:
+      - not_home
+    for:
+      hours: 12
+    trigger: state
+conditions: []
+actions:
+  - target:
+      entity_id: input_boolean.guest_mode # ⬅️ CHANGE THIS if your boolean is named differently
+    action: input_boolean.turn_off
+    data: {}
+mode: single

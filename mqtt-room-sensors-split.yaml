@@ -1,0 +1,18 @@
+
+- platform: mqtt_room
+  device_id: "iBeacon:6d4b14cd-ec1c-4fdf-a551-78aee54bb4c8-100-40004"
+  name: "Dave's Watch"
+  state_topic: "espresense/devices/iBeacon:6d4b14cd-ec1c-4fdf-a551-74aee31bb4c8-100-40004"
+  timeout: 10
+  away_timeout: 120
+  unique_id: dave_s_watch
+# ⬅️ CHANGE device_id, state_topic, name, and unique_id to match your device
+
+- platform: mqtt_room
+  device_id: "iBeacon:30b14403-63ca-4fc6-bdce-606df7268456-100-40004"
+  name: "S23 mobile"
+  state_topic: "espresense/devices/iBeacon:30b14403-63ca-4fc6-bdce-606df7268456-100-40004"
+  timeout: 10
+  away_timeout: 120
+  unique_id: s23_mobile
+  # ⬅️ CHANGE device_id, state_topic, name, and unique_id to match your device

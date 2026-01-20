@@ -1,0 +1,16 @@
+alias: Guest Mode – Enable when Tile keyring is detected
+description: Enables guest mode when the Tile keyring is detected in any room
+
+triggers:
+  - entity_id: sensor.tile_keyring ⬅️ CHANGE THIS to your Tile / device entity
+    trigger: state
+conditions:
+  - condition: template
+    value_template: >
+      {{ trigger.to_state.state not in ['not_home','unknown','unavailable','']
+      }}
+actions:
+  - target:
+      entity_id: input_boolean.guest_mode ⬅️ CHANGE THIS if your boolean is named differently
+    action: input_boolean.turn_on
+mode: single

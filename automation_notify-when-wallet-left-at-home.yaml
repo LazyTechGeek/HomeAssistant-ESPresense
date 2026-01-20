@@ -1,0 +1,21 @@
+alias: Warning if wallet left at home
+mode: single
+triggers:
+  - entity_id: sensor.s23_mobile # ⬅️ CHANGE to your phone / presence entity
+    to: not_home
+    for: "00:05:00" # ⬅️ Adjust delay if needed
+    trigger: state
+conditions:
+  - condition: template
+    value_template: >
+      {{ states('sensor.tile_wallet') not in ['not_home', 'unknown',
+      'unavailable', ''] }}
+# ⬅️ CHANGE to your Tile / wallet entity
+
+actions:
+  - data:
+      title: Wallet left at home?
+      message: >-
+        You may have left your wallet at home. It’s still detected in {{
+        states('sensor.tile_wallet') }}.
+    action: notify.mobile_app_dave_s_s23_mobile # ⬅️ CHANGE to your notify service

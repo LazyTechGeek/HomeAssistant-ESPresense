@@ -7,11 +7,11 @@ We cover ESP32 setup, BLE device enrollment, MQTT verification, and real-world a
 ▶️ [Home Assistant + ESPresense (Room-Level Presence & Automations)](https://youtu.be/iEi1qsz4o9I)
 
 ## 📖 Written Articles
-- **[Enabling Enabling BLE Transmission (Android & iOS)](https://github.com/LazyTechGeek/HomeAssistant-ESPresense/blob/main/Enabling-BLE-Transmission-(Android_%26_iOS).pdf)**
+- **[Enabling BLE Transmission (Android & iOS)](https://github.com/LazyTechGeek/HomeAssistant-ESPresense/blob/main/Enabling-BLE-Transmission-(Android_%26_iOS).pdf)**
 
 ## ⚙️ MQTT Room Sensors
-- **[mqtt room sensors split](https://github.com/LazyTechGeek/HomeAssistant-ESPresense/blob/main/mqtt-room-sensors-split.yaml)**
-- **[mqtt room sensors none split](https://github.com/LazyTechGeek/HomeAssistant-ESPresense/blob/main/mqtt-room-sensors-non-split.yaml)**
+- **[MQTT Room Sensors (Split)](https://github.com/LazyTechGeek/HomeAssistant-ESPresense/blob/main/mqtt-room-sensors-split.yaml)**
+- **[MQTT Room Sensors (Non-Split)](https://github.com/LazyTechGeek/HomeAssistant-ESPresense/blob/main/mqtt-room-sensors-non-split.yaml)**
 
 ## ⚙️ Automation examples used in this video
 - **[notify when wallet left at home](https://github.com/LazyTechGeek/HomeAssistant-ESPresense/blob/main/automation_notify-when-wallet-left-at-home.yaml)**

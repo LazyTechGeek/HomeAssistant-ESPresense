@@ -1,0 +1,207 @@
+# MQTT Connection, if empty will query and use hassio provided mqtt
+mqtt:
+  host:
+  port: 1883
+  ssl: false
+  username:
+  password:
+
+# This gets added to the x,y,z to derive a gps location
+gps:
+  latitude: 51.501177916575095
+  longitude: -0.14178794309163892
+  elevation: 20
+  rotation: 100 # Rotation in degrees from north (0 degrees)
+  report: false # Include GPS latitude/longitude when reporting to Home Assistant
+
+map:
+  flip_x: false        # Set to true to flip X coordinates (default: false)
+  flip_y: true         # Set to true to use bottom-left origin, false for top-left origin (default: true)
+  wall_thickness: 0.1  # Wall thickness in meters
+  wall_color: "#ddd"   # Optional wall color, if not set uses room color
+  wall_opacity: 0.35   # Optional wall opacity, if not set defaults to 0.35
+
+# How long before device considered stale
+timeout: 30
+# How long before device is considered away
+away_timeout: 120
+
+optimization:
+  enabled: true
+  interval_secs: 3600
+  keep_snapshot_mins: 5   # How long to keep optimization snapshots (default: 5 minutes)
+  optimizer: per_node_absorption # Options global_absorption, per_node_absorption, legacy (default: legacy)
+  limits:
+    absorption_min: 2.5
+    absorption_max: 3.5
+    rx_adj_rssi_min: -5
+    rx_adj_rssi_max: 25
+    tx_ref_rssi_min: -80
+    tx_ref_rssi_max: -40
+  weights:
+    # Weighting factor for Pearson Correlation in best scenario scoring (default: 0.5)
+    correlation: 0.5
+    # Weighting factor for normalized RMSE in best scenario scoring (default: 0.5)
+    rmse: 0.5
+
+history:
+  enabled: false # Enable to log history to db (Beta)
+  expire_after: 24h # Expire after 24 hours
+
+locators:
+  nadaraya_watson:
+    enabled: true
+    floors: ["Ground"]
+    bandwidth: 0.5
+    kernel: gaussian
+
+  nelder_mead:
+    enabled: false
+    floors: ["Ground"]
+    weighting:
+      algorithm: gaussian
+      props:
+        sigma: 0.10
+
+  nearest_node:
+    enabled: true
+    max_distance: 10
+
+# Floors w/ the points to draw it in meters
+floors:
+  - id: Ground
+    name: Ground
+    bounds:
+      [[-3.1516166750000005, 9.1631343645, 0], [15.758083375000002, 28.0728344145, 3]]
+    rooms:
+      - name: Bathroom
+        points:
+          - [4.8825921999999995, 22.788921000000002]
+          - [7.475607299999999, 24.83023]
+          - [8.9376264, 22.788921000000002]
+          - [6.3721967, 20.8303665]
+          - [6.3721967, 20.8303665]
+      - name: Bedroom
+        points:
+          - [8.882455700000001, 22.788921000000002]
+          - [9.1858942, 22.513068000000004]
+          - [12.6064667, 22.513068000000004]
+          - [12.5512957, 18.347693]
+          - [6.8135617, 18.3201077]
+          - [6.8135617, 19.9752236]
+          - [6.1790997, 20.7476113]
+          - [6.1790997, 20.775197]
+      - name: Hallway
+        points:
+          - [5.3791267000000005, 22.0992874]
+          - [3.0895502000000006, 20.251075700000005]
+          - [2.4826740000000007, 20.968292500000004]
+          - [0, 18.954568000000005]
+          - [1.0206549000000007, 17.575304000000003]
+          - [1.9861395000000004, 18.292521]
+          - [6.7859757, 18.402863000000004]
+          - [6.703219700000001, 19.920051500000003]
+          - [6.1790997, 20.692439000000004]
+          - [6.3170257, 20.940707000000003]
+          - [6.3170257, 20.940707000000003]
+      - name: Cupboard 1
+        points:
+          - [2.4826740000000003, 21.0234634]
+          - [3.5309136999999997, 21.8234365]
+          - [4.1377899, 21.133805000000002]
+          - [3.0619647, 20.195906]
+          - [3.0619647, 20.195906]
+      - name: Cupboard 2
+        points:
+          - [1.9309686999999998, 18.2373513]
+          - [5.0205182, 18.292521999999998]
+          - [3.1171357, 16.7477468]
+          - [3.1171357, 16.7477468]
+      - name: Lounge
+        points:
+          - [8.7169437, 14.127146200000002]
+          - [8.7169437, 18.320107700000005]
+          - [5.075689100000001, 18.320107700000005]
+          - [3.0067937000000007, 16.775332300000002]
+          - [5.0928742, 14.111024400000002]
+      - name: Kitchen
+        points:
+          - [8.7169437, 18.3201077]
+          - [12.598394700000002, 18.310192999999998]
+          - [12.598394700000002, 14.1557388]
+          - [8.7233942, 14.080738799999999]
+      - name: Dining Room
+        points:
+          - [5.673394200000001, 12.405738779]
+          - [8.6483942, 12.405738779]
+          - [8.7233942, 14.0807388]
+          - [5.5983942, 14.0807391]
+
+# Locations of espresense nodes in meters
+nodes:
+  - id: poe_kitchen
+  - name: poe kitchen
+    stationary: true
+    point: [12, 16.1]
+    floors: ["Ground"]
+
+  - id: poe_bedroom
+  - name: poe bedroom
+    stationary: true
+    point: [11.2, 20.6]
+    floors: ["Ground"]
+
+  - id: poe_lounge
+  - name: poe lounge
+    stationary: true
+    point: [3.6, 17.1]
+    floors: ["Ground"]
+
+  - id: hall
+  - name: Hall
+    stationary: true
+    point: [2.9, 21.2]
+    floors: ["Ground"]
+
+  - id: bathroom
+  - name: Bathroom
+    stationary: true
+    point: [5.3, 23]
+    floors: ["Ground"]
+
+  - id: dining_room
+  - name: Dining Room
+    stationary: true
+    point: [7, 13.2]
+    floors: ["Ground"]
+
+# Devices to track
+devices:
+#  - name: "*" # Track all named devices
+#  - id: "tile:*" # Track all tiles
+#  - id: "irk:*" # Track all IRKs
+#  - id: "watch:*"
+#  - id: "phone:*"
+#  - id: "wallet:*"
+#  - id: "keys:*"
+#  - id: "therm:*"
+#  - id: "iBeacon:*"
+#  - id: "car:*"
+#  - id: "laptop:*"
+  
+  
+  - id: "iBeacon:30b14403-63ca-4fc6-bdce-606df7268456-100-40004"
+    name: "S23 mobile"
+
+  - id: "iBeacon:6d4b14cd-ec1c-4fdf-a551-74aee31bb4c8-100-40004"
+    name: "Dave's Watch"
+    
+  - id: "tile:c5b5c5db969e"
+    name: "tile keyring"
+
+  - id: "tile:d5c970e1f912"
+    name: "tile wallet"  
+
+# Devices to NOT track
+exclude_devices:
+  - id: "iBeacon:e5ca1ade-f007-ba11-0000-000000000000-*" # These are junk, we alias them to node:*
